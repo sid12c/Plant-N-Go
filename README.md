@@ -1,3 +1,9 @@
+# UGA Hacks 8
+
+##### Sidharth Chaudhary, Thomas Khoo, Charles Lam, Noah Samples, Sarah Sileshi
+
+<br>
+
 <p align="center">
  <img width="383" alt="Plant-N-Go Logo" src="images/logo.png">
 </p>
