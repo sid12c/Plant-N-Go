@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant-N-Go</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Eater&family=Itim&family=Mystery+Quest&family=Nosifer&family=Wendy+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="background">
+        <!-- <h1>Plant-N-Go</h1> -->
+        <img src="Logo.png" alt="logo">
+        
+        <div class="graph-container">
+            <div class="chart">
+                <h2>Data</h2>
+                <canvas id="myChart"></canvas>
+                <div class="plant-status">
+                    Plant Status
+                </div>
+                <div class="success"> Success </div>
+                <div class="failure"> Failure </div>
+                <p> Last Pump Time: <span> Last LED Time: </span></p>
+                
+                <button onclick="updateChart(this)">update</button>
+            </div>
+
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    // could turn each attribute to array values 
+    // then map each array value into another bar chart
+    const plants = {
+        label: "Our Plant Demo",
+        soilMoisture: 1,
+        lightLevel: 2,
+        airHumidity: 3,
+        roomTemp: 4
+    }
+
+    const data = {
+      labels: [plants.label],
+      datasets: [{
+        label: 'Soil Moisture (% of water by soil mass)', 
+        data: [plants.soilMoisture],
+        borderWidth: 1
+      }, {
+        label: 'Light Level (lx = lux)', 
+        data: [plants.lightLevel],
+        borderWidth: 1
+      }, {
+        label: 'Air Humidity (g.m-3 = grams of water vapour per cubic metre of air.)', 
+        data: [plants.airHumidity],
+        borderWidth: 1
+      }, {
+        label: 'Room Temperature (F°)', 
+        data: [plants.roomTemp],
+        borderWidth: 1
+      }]
+    };
+
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+                display: false
+            }
+          }
+        }
+      },
+      plugins: [ChartDataLabels]
+    };
+
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    function updateChart(button) {
+        // console.log("Button Pressed");
+        // myChart.updateChart();
+        myChart.update();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+}
+
+img {
+    margin: auto;
+    display: block;
+    height: 25;
+    padding-left: 25px;
+}
+
+.background {
+    /* display: flex; */
+    background-image: url("../watering-plant.jpeg");
+    background-color: #525454;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 1000px;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    padding-top: 10px;
+}
+
+.chart {
+    background-color: white;
+    opacity: 0.93;
+    width: 700px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: white;
+    font-size: 5em;
+    padding-left: 40px;
+    /* font-family: 'Annie Use Your Telescope', cursive; */
+    /* font-family: 'Eater', cursive; */
+    /* font-family: 'Itim', cursive; */
+   /* font-family: 'Nosifer', cursive; */
+
+    font-family: 'Mystery Quest', cursive;
+    /* font-family: 'Wendy One', sans-serif; */
+}
+
+h2 {
+    margin: auto;
+    color: black;
+    padding-left: 20px;
+}
+
+.plant-status {
+    display: block;
+    margin: auto;
+    margin-bottom: 5px;
+    /* background-color: lightgreen; */
+    border: 1px solid black;
+    height: 15px;
+    width: 70px;
+    font-size: 12px;
+}
+
+.success, .failure {
+    display: inline-block;
+    margin: auto;
+    margin-bottom: 5px;
+    background-color: lightgreen;
+    border: 1px solid green;
+    height: 15px;
+    width: 50px;
+    font-size: 12px;
+}
+
+.failure {
+    background-color: lightcoral;
+    border: 1px solid red;
+}
+
+p {
+    font-size: 12px;
+}
+
+span {
+    display: inline-block;
+    padding-left: 200px;
+}
+
+button {
+    margin-bottom: 5px;
+}
