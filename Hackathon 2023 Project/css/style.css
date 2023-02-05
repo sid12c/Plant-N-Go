@@ -89,3 +89,12 @@ span {
 button {
     margin-bottom: 5px;
 }
+
+.live-data {
+    text-align: center;
+}
+
+#soil, #light, #air, #room-temp {
+    display: block;
+    margin: auto;
+}

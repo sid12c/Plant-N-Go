@@ -7,32 +7,144 @@
     <!-- include the socket library -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
     <title>Plant-N-Go</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/style.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Eater&family=Itim&family=Mystery+Quest&family=Nosifer&family=Wendy+One&display=swap" rel="stylesheet">
+    <style>
+      /* I know this isn't the best way to apply css but in order to get the static html page on the node server
+      we had to use inline css */
+      body {
+        margin: 0;
+      }
 
+      img {
+        margin: auto;
+        display: block;
+        height: 25;
+        padding-left: 25px;
+      }
+
+      .background {
+        /* display: flex; */
+        background-image: url("https://media.istockphoto.com/id/501061554/photo/young-plants.jpg?s=612x612&w=0&k=20&c=UNUAPzRkQoxgq4RD6VryNhYb0ONMjQ6055zivgqTs0s=");
+        background-color: #525454;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 1000px;
+        background-attachment: fixed;
+        background-blend-mode: multiply;
+        padding-top: 10px;
+      }
+
+      .chart {
+        background-color: white;
+        opacity: 0.93;
+        width: 700px;
+        margin: auto;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        color: white;
+        font-size: 5em;
+        padding-left: 40px;
+        /* font-family: 'Annie Use Your Telescope', cursive; */
+        /* font-family: 'Eater', cursive; */
+        /* font-family: 'Itim', cursive; */
+        /* font-family: 'Nosifer', cursive; */
+
+        font-family: 'Mystery Quest', cursive;
+        /* font-family: 'Wendy One', sans-serif; */
+      }
+
+      h2 {
+        margin: auto;
+        color: black;
+        padding-left: 20px;
+      }
+
+      .plant-status {
+        display: block;
+        margin: auto;
+        margin-bottom: 5px;
+        /* background-color: lightgreen; */
+        border: 1px solid black;
+        height: 15px;
+        width: 70px;
+        font-size: 12px;
+      }
+
+      .success, .failure {
+        display: inline-block;
+        margin: auto;
+        margin-bottom: 5px;
+        background-color: lightgreen;
+        border: 1px solid green;
+        height: 15px;
+        width: 50px;
+        font-size: 12px;
+      }
+
+      .failure {
+        background-color: lightcoral;
+        border: 1px solid red;
+      }
+
+      p {
+        font-size: 12px;
+      }
+
+      span {
+        display: inline-block;
+        padding-left: 200px;
+      }
+
+      button {
+        margin-bottom: 5px;
+      }
+
+      .live-data {
+        text-align: center;
+      }
+
+      #soil, #light, #air, #room-temp {
+        display: block;
+        margin: auto;
+      }
+    </style>
 </head>
 <body>
     
     <div class="background">
         <!-- <h1>Plant-N-Go</h1> -->
-        <img src="Logo.png" alt="logo">
+        <img src="https://github.com/sid12c/Plant-N-Go/blob/main/Hackathon%202023%20Project/Logo.png?raw=true" alt="logo">
         
-        <div class="graph-container">
+        <div class="container">
             <div class="chart">
-                <h2>Data</h2>
-                <canvas id="myChart"></canvas>
-                <div class="plant-status">
+
+              <h2>Live Time Data</h2>
+              <div class="live-data">
+                <p id="soil">Soil Moisture Data: </p>
+                <p id="light">Light Intensity Data: </p> 
+                <p id="air">Air Humidity Data: </p> 
+                <p id="room-temp">Room Temperature Data: </p> 
+                <button onclick="generateChart(this)">update</button>
+                <!-- <button onclick="clearChart(this)">clear</button> -->
+              </div>
+
+                <h2>Chart Data</h2>
+                <div id="graph-container">
+                  <canvas id="myChart"></canvas>
+                </div>
+                <!-- <div class="plant-status">
                     Plant Status
                 </div>
                 <div class="success"> Success </div>
-                <div class="failure"> Failure </div>
-                <p> Last Pump Time: <span> Last LED Time: </span></p>
-                
-                <button onclick="updateChart(this)">update</button>
+                <div class="failure"> Failure </div> -->       
             </div>
-
         </div>
     </div>
 
@@ -44,50 +156,10 @@
 
     var socket = io();
 
-    // var soilMoistureData = 0;
-    // var lightLevelData = 0;
-    // var airHumidityData = 0;
-    // var roomTempData = 0;
-
-    // could turn each attribute to array values 
-    // then map each array value into another bar chart
-    const plants = {
-        label: "Our Plant Demo",
-        // soilMoisture: soilMoistureData,
-        // lightLevel: lightLevelData,
-        // airHumidity: airHumidityData,
-        // roomTemp: roomTempData
-        soilMoisture: 1,
-        lightLevel: 2,
-        airHumidity: 3,
-        roomTemp: 4,
-
-        get getSoilMoisture() {
-          return this.soilMoisture;
-        }, 
-        get getLightLevel() {
-          return this.lightLevel;
-        },
-        get getAirHumidity() {
-          return this.airHumidity;
-        },
-        get getRoomTemp() {
-          return this.getRoomTemp;
-        },
-
-        set setSoilMoisture(newValue) {
-          this.soilMoisture = newValue;
-        }, 
-        set setLightLevel(newValue) {
-          this.lightLevel = newValue;
-        },
-        set setAirHumidity(newValue) {
-          this.airHumidity = newValue;
-        },
-        set setRoomTemp(newValue) {
-          this.getRoomTemp = newValue;
-        }
-    }
+    var soilMoistureData = 0;
+    var lightLevelData = 0;
+    var airHumidityData = 0;
+    var roomTempData = 0;
 
     socket.on('data', function(data) {
         // const para = document.createElement("p");  
@@ -99,47 +171,83 @@
 
         if (data.charAt(0) == 'C') {
           roomTempData = Number(data.substring(1,5));
-          plants.setRoomTemp = roomTempData;
+          document.getElementById("room-temp").innerHTML = "Room Temperature Data: " + roomTempData;
           console.log("assigning the value to room temperature " + roomTempData)
         } else if (data.charAt(0) == "H") {
           soilMoistureData = Number(data.substring(1,5));
-          plants.setSoilMoisture = soilMoistureData ;
+          document.getElementById("soil").innerHTML = "Soil Moisture Data: "  + soilMoistureData;
           airHumidityData = Number(soilMoistureData);
-          plants.setAirHumidity = airHumidityData;
+          document.getElementById("air").innerHTML = "Air Humidity Data: " + airHumidityData;
           console.log("assigning the value to soilMoistureData " + soilMoistureData)
           console.log("assigning the value to airHumidityData " + airHumidityData)
         } else if (data.charAt(0) == "l") {
           lightLevelData = Number(data.substring(1,4));
-          plants.setLightLevel = lightLevelData;
+          document.getElementById("light").innerHTML = "Light Intensity Data: " + lightLevelData;
           console.log("assigning the value to light level " + lightLevelData)
         }
     })
 
+    // function clearChart(button) {
+    //   document.getElementById("myChart").remove();
 
+    //   // Creating another canvas
+    //   var canv = document.createElement('CANVAS');
+    //   // canv.id = 'myChart'; // adding an id attribute
 
-    console.log("values of our plant: " + plants.label + " " + plants.soilMoisture + " " + plants.lightLevel + " " + plants.airHumidity + " " + plants.roomTemp);
-    // console.log("values of our plant: " + "Our Plant Demo" + " " + soilMoistureData + " " + lightLevelData + " " + airHumidityData + " " + roomTempData);
+    //   document.getElementById('#graph-container').appendChild(canv);
+    // }
+
+    function generateChart(button) {
+      // document.getElementById("myChart").remove(); // this is my <canvas> element
+      // document.getElementById("graph-container").append('<canvas id="myChart"><canvas>');
+
+      console.log("values: " + "Our Plant Demo" + " " + soilMoistureData + " " + lightLevelData + " " + airHumidityData + " " + roomTempData);
+      // var roomtempString = document.getElementById("room-temp").textContent
+      // var soilMoistureString = document.getElementById("soil").textContent
+      // var airHumidityString = document.getElementById("air").textContent
+      // var lightLevelString = document.getElementById("light").textContent
+
+      
+
+      console.log()
+
+    // could turn each attribute to array values 
+    // then map each array value into another bar chart
+    const plants = {
+        label: "Our Plant Demo",
+        soilMoisture: soilMoistureData,
+        lightLevel: lightLevelData,
+        airHumidity: airHumidityData,
+        roomTemp: roomTempData
+        // soilMoisture: 1,
+        // lightLevel: 2,
+        // airHumidity: 3,
+        // roomTemp: 4
+    }
+
+     console.log("values of our plant: " + plants.label + " " + plants.soilMoisture + " " + plants.lightLevel + " " + plants.airHumidity + " " + plants.roomTemp);
+    // 
 
     const data = {
-      labels: [plants.getSoilMoisture],
+      labels: [plants.label],
       datasets: [{
         label: 'Soil Moisture (% of water by soil mass)', 
         data: [plants.soilMoisture],
         // data: [soilMoistureData],
         borderWidth: 1
       }, {
-        label: 'Light Level (lx = lux)', 
-        data: [plants.getLightLevel],
+        label: 'Light Inensity (lx = lux)', 
+        data: [plants.lightLevel],
         // data: [lightLevelData],
         borderWidth: 1
       }, {
         label: 'Air Humidity (g.m-3 = grams of water vapour per cubic metre of air.)', 
-        data: [plants.getAirHumidity],
+        data: [plants.airHumidity],
         // data: [airHumidityData],
         borderWidth: 1
       }, {
         label: 'Room Temperature (F°)', 
-        data: [plants.getRoomTemp],
+        data: [plants.roomTemp],
         // data: [roomTempData],
         borderWidth: 1
       }]
@@ -166,10 +274,9 @@
       config
     );
 
-    function updateChart(button) {
-        // console.log("Button Pressed");
-        // myChart.updateChart();
-        myChart.update();
+    // console.log("Button Pressed");
+    // myChart.updateChart();
+    // myChart.update();
     }
 </script>
 </body>
