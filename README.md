@@ -45,7 +45,7 @@ The website provides live plant vital information such as soil moisture, light l
 
 
 # <a name="rws"></a>Running the Web Server
-To run the web server, sensor system must be connected to communication port 3 using the USB 2.0 cable. In the terminal enter the following command from the Hackathon 2023 Project/js
+To run the web server, the sensor system must be connected to communication port 3 using the USB 2.0 cable. In the terminal enter the following command from the Hackathon 2023 Project/js
 ```
 node ./app.js
 ```
