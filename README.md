@@ -40,6 +40,8 @@ The Arduino Uno is a microcontroller that allows users to write code In c++ on t
 
 # <a name="wf"></a>Website Features
 The website provides live plant vital information such as soil moisture, light levels, and temperature. The website can also graph the current vitals by pressing the update button.
+<br>
+
 ![Websitescreenshotscreenshot](https://user-images.githubusercontent.com/74881981/216806993-a5e4c55c-bad2-4f04-a34e-4211fabb8ddf.png)
 
 
