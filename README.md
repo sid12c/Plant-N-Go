@@ -26,7 +26,7 @@
 * <a href="https://www.adafruit.com/product/4546?gclid=Cj0KCQiAofieBhDXARIsAHTTldokD8E8BwFvs_Uxo9Fx2sLQJjyzHI3QTeLRO_ReIoLfin0n_AXS4I0aAiTyEALw_wcB">DC Water Pump</a> x1
 * <a href="https://www.adafruit.com/product/4489">L9110H H-Bridge</a> x1
 * <a href="https://lighthouseleds.com/5mm-led-uv-purple-ultra-bright-diffused.html?gclid=Cj0KCQiAofieBhDXARIsAHTTldpvHk5dJTu1UEUQUHL_Xm3WtVlXARv5mp0nI6y6_aaoatUsO-99igYaApXjEALw_wcB">UV LED</A> x1
-* <a href="https://www.adafruit.com/product/161">photoresistor</a> x1
+* <a href="https://www.adafruit.com/product/161">Photoresistor</a> x1
 * <a href="https://www.amazon.com/EDGELEC-Resistor-Tolerance-Multiple-Resistance/dp/B07QG1V4YL/ref=sr_1_1_sspa?keywords=1k+ohm+resistor&qid=1675578687&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUkI2M1YwNENWMEI3JmVuY3J5cHRlZElkPUEwMDg3MDczMVZCRlZZQVVFVDFIQyZlbmNyeXB0ZWRBZElkPUEwNTQyMTU4MUJKMk1OMUhVR1o3MyZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">1 kOhm Resistor</a> x1
 * <a href="https://www.amazon.com/EDGELEC-Resistor-Tolerance-Multiple-Resistance/dp/B07QJB31M7/ref=sr_1_1_sspa?keywords=10k+ohm+resistor&qid=1675578717&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkZHQlZQVk9XM1UxJmVuY3J5cHRlZElkPUEwMTU0NDE0M0cwVDBWMzJOWDZCWSZlbmNyeXB0ZWRBZElkPUEwODA3NzIxMkFNVEJWRVdPMUFHTCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">10 kOhm Resistor</a> x1
 * <a href="https://www.amazon.com/AmazonBasics-USB-2-0-Cable-Male/dp/B00NH11KIK/ref=asc_df_B00NH11KIK/?tag=hyprod-20&linkCode=df0&hvadid=167151358503&hvpos=&hvnetw=g&hvrand=12043408033904809208&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9011070&hvtargid=pla-181858139331&psc=1&region_id=972485">USB 2.0 Cable Type A/B</a> x1
@@ -39,6 +39,10 @@ The Arduino Uno is a microcontroller that allows users to write code In c++ on t
 <img src="images/Plant-N-Go_Pinouts.png">
 
 # <a name="wf"></a>Website Features
+The website provides live plant vital information such as soil moisture, light levels, and temperature. The website can also graph the current vitals by pressing the update button.
+![Websitescreenshotscreenshot](https://user-images.githubusercontent.com/74881981/216806993-a5e4c55c-bad2-4f04-a34e-4211fabb8ddf.png)
+
+
 
 # <a name="rws"></a>Running the Web Server
 To run the web server, sensor system must be connected to communication port 3 using the USB 2.0 cable. In the terminal enter the following command from the Hackathon 2023 Project/js
