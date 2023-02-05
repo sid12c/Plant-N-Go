@@ -59,7 +59,7 @@ localhost:300
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=7-dBoyJsRCk" target="_blank"><img src="http://img.youtube.com/vi/7-dBoyJsRCk/0.jpg" 
 alt="Plant-N-Go Video" width="240" height="180" border="10" /></a>
 <br>
-alt: <a href="https://youtu.be/7-dBoyJsRCk">here</a>
+demo: <a href="https://youtu.be/7-dBoyJsRCk">here</a>
 <br>
 slides: <a href="https://docs.google.com/presentation/d/1hz4pAgF_phqR9vMfJn_CqGc1-yzrtDfM5V6aIuWvDCQ/edit?usp=sharing">here</a>
 <br>
