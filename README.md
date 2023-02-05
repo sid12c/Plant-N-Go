@@ -31,3 +31,22 @@
 * <a href="https://www.amazon.com/EDGELEC-Resistor-Tolerance-Multiple-Resistance/dp/B07QJB31M7/ref=sr_1_1_sspa?keywords=10k+ohm+resistor&qid=1675578717&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkZHQlZQVk9XM1UxJmVuY3J5cHRlZElkPUEwMTU0NDE0M0cwVDBWMzJOWDZCWSZlbmNyeXB0ZWRBZElkPUEwODA3NzIxMkFNVEJWRVdPMUFHTCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">10 kOhm Resistor</a> x1
 * <a href="https://www.amazon.com/AmazonBasics-USB-2-0-Cable-Male/dp/B00NH11KIK/ref=asc_df_B00NH11KIK/?tag=hyprod-20&linkCode=df0&hvadid=167151358503&hvpos=&hvnetw=g&hvrand=12043408033904809208&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9011070&hvtargid=pla-181858139331&psc=1&region_id=972485">USB 2.0 Cable Type A/B</a> x1
 * <a href="https://www.amazon.com/Elegoo-EL-CP-004-Multicolored-Breadboard-arduino/dp/B01EV70C78/ref=asc_df_B01EV70C78/?tag=hyprod-20&linkCode=df0&hvadid=222785939698&hvpos=&hvnetw=g&hvrand=655115302587060304&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9011070&hvtargid=pla-362913641420&psc=1&region_id=972485">Jumper wires</a>
+
+# <a name="ah"></a>About the Hardware
+The Arduino Uno is a microcontroller that allows users to write code In c++ on their computer and upload it to a physical board. The Liquid Crystal Display(LCD) is a flat-panel display or other electronically modulated optical devices that uses liquid crystals' light-modulating properties combined with polarizers. This allows users to display information on a screen without using a computer. The DHT11 Temperature and Humidity Sensor is a capacitive humidity sensor that measures humidity using a metal oxide strip between two electrodes. As humidity increases, this changes the metal oxide's electrical capacity. To detect temperature, the DHT11 uses a thermistor which is a temperature-dependent resistor. The thermistor resistance decreases as the temperature increases. At low temperatures, the resistance of a thermistor is high, and little current can flow through. At high temperatures, the resistance of a thermistor is low, and more current can flow through. The Photoresistor is a sensor that changes its resistance when light shines on it. A high light intensity will cause a lower resistance, whereas a lower light intensity will cause higher resistance. The L9110H H-Bridge is an integrated circuit which powers the pump motor and controls the direction it spins.
+
+# <a name="hs"></a>Hardware Setup
+<img src="images/Plant-N-Go_Pinouts.png">
+
+# <a name="wf"></a>Website Features
+
+# <a name="rws"></a>Running the Web Server
+To run the web server, sensor system must be connected to communication port 3 using the USB 2.0 cable. In the terminal enter the following command from the Hackathon 2023 Project/js
+```
+node ./app.js
+```
+Then in a browser (preferably Google Chrome) open the following address:
+```
+localhost:300
+```
+# <a name="m"></a>Media
