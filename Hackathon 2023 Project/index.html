@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- include the socket library -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
     <title>Plant-N-Go</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Eater&family=Itim&family=Mystery+Quest&family=Nosifer&family=Wendy+One&display=swap" rel="stylesheet">
+
 </head>
 <body>
     
@@ -33,36 +36,111 @@
         </div>
     </div>
 
+    <!-- <div id="sample"></div> -->
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+
+    var socket = io();
+
+    // var soilMoistureData = 0;
+    // var lightLevelData = 0;
+    // var airHumidityData = 0;
+    // var roomTempData = 0;
+
     // could turn each attribute to array values 
     // then map each array value into another bar chart
     const plants = {
         label: "Our Plant Demo",
+        // soilMoisture: soilMoistureData,
+        // lightLevel: lightLevelData,
+        // airHumidity: airHumidityData,
+        // roomTemp: roomTempData
         soilMoisture: 1,
         lightLevel: 2,
         airHumidity: 3,
-        roomTemp: 4
+        roomTemp: 4,
+
+        get getSoilMoisture() {
+          return this.soilMoisture;
+        }, 
+        get getLightLevel() {
+          return this.lightLevel;
+        },
+        get getAirHumidity() {
+          return this.airHumidity;
+        },
+        get getRoomTemp() {
+          return this.getRoomTemp;
+        },
+
+        set setSoilMoisture(newValue) {
+          this.soilMoisture = newValue;
+        }, 
+        set setLightLevel(newValue) {
+          this.lightLevel = newValue;
+        },
+        set setAirHumidity(newValue) {
+          this.airHumidity = newValue;
+        },
+        set setRoomTemp(newValue) {
+          this.getRoomTemp = newValue;
+        }
     }
 
+    socket.on('data', function(data) {
+        // const para = document.createElement("p");  
+        // const node = document.createTextNode("This is new." + data);
+        // para.appendChild(node);
+
+        // console.log(data);
+        // document.getElementById('sample').appendChild(para) 
+
+        if (data.charAt(0) == 'C') {
+          roomTempData = Number(data.substring(1,5));
+          plants.setRoomTemp = roomTempData;
+          console.log("assigning the value to room temperature " + roomTempData)
+        } else if (data.charAt(0) == "H") {
+          soilMoistureData = Number(data.substring(1,5));
+          plants.setSoilMoisture = soilMoistureData ;
+          airHumidityData = Number(soilMoistureData);
+          plants.setAirHumidity = airHumidityData;
+          console.log("assigning the value to soilMoistureData " + soilMoistureData)
+          console.log("assigning the value to airHumidityData " + airHumidityData)
+        } else if (data.charAt(0) == "l") {
+          lightLevelData = Number(data.substring(1,4));
+          plants.setLightLevel = lightLevelData;
+          console.log("assigning the value to light level " + lightLevelData)
+        }
+    })
+
+
+
+    console.log("values of our plant: " + plants.label + " " + plants.soilMoisture + " " + plants.lightLevel + " " + plants.airHumidity + " " + plants.roomTemp);
+    // console.log("values of our plant: " + "Our Plant Demo" + " " + soilMoistureData + " " + lightLevelData + " " + airHumidityData + " " + roomTempData);
+
     const data = {
-      labels: [plants.label],
+      labels: [plants.getSoilMoisture],
       datasets: [{
         label: 'Soil Moisture (% of water by soil mass)', 
         data: [plants.soilMoisture],
+        // data: [soilMoistureData],
         borderWidth: 1
       }, {
         label: 'Light Level (lx = lux)', 
-        data: [plants.lightLevel],
+        data: [plants.getLightLevel],
+        // data: [lightLevelData],
         borderWidth: 1
       }, {
         label: 'Air Humidity (g.m-3 = grams of water vapour per cubic metre of air.)', 
-        data: [plants.airHumidity],
+        data: [plants.getAirHumidity],
+        // data: [airHumidityData],
         borderWidth: 1
       }, {
         label: 'Room Temperature (F°)', 
-        data: [plants.roomTemp],
+        data: [plants.getRoomTemp],
+        // data: [roomTempData],
         borderWidth: 1
       }]
     };
