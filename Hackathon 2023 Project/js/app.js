@@ -54,9 +54,9 @@ parser.on('data', function(data) {
     
     setTimeout(() => {
         console.log(data);
-        console.log("Delayed for 3 seconds.");
+        console.log("Delayed for 1 seconds.");
         io.emit('data', data) // emitting the message with the data coming from the serial port
-    }, 3000)
+    }, 1000)
 
 });
 

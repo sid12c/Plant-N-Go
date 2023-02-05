@@ -63,6 +63,7 @@
       h2 {
         margin: auto;
         color: black;
+        padding-top: 10px;
         padding-left: 20px;
       }
 
@@ -103,16 +104,20 @@
       }
 
       button {
-        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-bottom: 10px;
       }
 
       .live-data {
         text-align: center;
+        padding-top: 10px;
       }
 
       #soil, #light, #air, #room-temp {
         display: block;
         margin: auto;
+        font-size: 15px;
+        padding: 1px;
       }
     </style>
 </head>
@@ -127,11 +132,11 @@
 
               <h2>Live Time Data</h2>
               <div class="live-data">
-                <p id="soil">Soil Moisture Data: </p>
-                <p id="light">Light Intensity Data: </p> 
-                <p id="air">Air Humidity Data: </p> 
-                <p id="room-temp">Room Temperature Data: </p> 
-                <button onclick="generateChart(this)">update</button>
+                <p id="soil">Soil Moisture Data (% of water by soil mass): </p>
+                <p id="light">Light Intensity Data (lux): </p> 
+                <p id="air">Air Humidity Data (grams of water vapour / cubic metre of air): </p> 
+                <p id="room-temp">Room Temperature Data (Fahrenheit): </p> 
+                <button onclick="generateChart(this)" id="update">update</button>
                 <!-- <button onclick="clearChart(this)">clear</button> -->
               </div>
 
@@ -170,19 +175,19 @@
         // document.getElementById('sample').appendChild(para) 
 
         if (data.charAt(0) == 'C') {
-          roomTempData = Number(data.substring(1,5));
-          document.getElementById("room-temp").innerHTML = "Room Temperature Data: " + roomTempData;
+          roomTempData = (Number(data.substring(1,5)) * 1.8) + 32;
+          document.getElementById("room-temp").innerHTML = "Room Temperature Data (Fahrenheit): " + roomTempData;
           console.log("assigning the value to room temperature " + roomTempData)
         } else if (data.charAt(0) == "H") {
           soilMoistureData = Number(data.substring(1,5));
-          document.getElementById("soil").innerHTML = "Soil Moisture Data: "  + soilMoistureData;
+          document.getElementById("soil").innerHTML = "Soil Moisture Data (% of water by soil mass): "  + soilMoistureData;
           airHumidityData = Number(soilMoistureData);
-          document.getElementById("air").innerHTML = "Air Humidity Data: " + airHumidityData;
+          document.getElementById("air").innerHTML = "Air Humidity Data (grams of water vapour / cubic metre of air): " + airHumidityData;
           console.log("assigning the value to soilMoistureData " + soilMoistureData)
           console.log("assigning the value to airHumidityData " + airHumidityData)
         } else if (data.charAt(0) == "l") {
           lightLevelData = Number(data.substring(1,4));
-          document.getElementById("light").innerHTML = "Light Intensity Data: " + lightLevelData;
+          document.getElementById("light").innerHTML = "Light Intensity Data (lux): " + lightLevelData;
           console.log("assigning the value to light level " + lightLevelData)
         }
     })
@@ -236,12 +241,12 @@
         // data: [soilMoistureData],
         borderWidth: 1
       }, {
-        label: 'Light Inensity (lx = lux)', 
+        label: 'Light Inensity (lx)', 
         data: [plants.lightLevel],
         // data: [lightLevelData],
         borderWidth: 1
       }, {
-        label: 'Air Humidity (g.m-3 = grams of water vapour per cubic metre of air.)', 
+        label: 'Air Humidity (g.m-3)', 
         data: [plants.airHumidity],
         // data: [airHumidityData],
         borderWidth: 1
