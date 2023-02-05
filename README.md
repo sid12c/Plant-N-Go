@@ -56,3 +56,25 @@ Then in a browser (preferably Google Chrome) open the following address:
 localhost:300
 ```
 # <a name="m"></a>Media
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=7-dBoyJsRCk" target="_blank"><img src="http://img.youtube.com/vi/7-dBoyJsRCk/0.jpg" 
+alt="Plant-N-Go Video" width="240" height="180" border="10" /></a>
+<br>
+alt: <a href="https://youtu.be/7-dBoyJsRCk">here</a>
+<br>
+slides: <a href="https://docs.google.com/presentation/d/1hz4pAgF_phqR9vMfJn_CqGc1-yzrtDfM5V6aIuWvDCQ/edit?usp=sharing">here</a>
+<br>
+![Screenshot 2023-02-05 035713](https://user-images.githubusercontent.com/74881981/216811159-e80ea566-4830-4f66-9b8a-d8ab576a4304.png)
+<br>
+Plant-N-Go planter system and website
+<br>
+![Screenshot 2023-02-05 035739](https://user-images.githubusercontent.com/74881981/216811178-74c870cf-3c38-45dc-b106-5fa9d23443e3.png)
+<br>
+Plant-N-Go planter
+<br>
+![Screenshot 2023-02-05 035808](https://user-images.githubusercontent.com/74881981/216811194-b44294df-25d6-452a-bb47-1cf741fc1cee.png)
+<br>
+inside planter
+<br>
+![Screenshot 2023-02-05 035826](https://user-images.githubusercontent.com/74881981/216811204-792f60ba-43e6-4cbf-9924-0ec30d9701c3.png)
+<br>
+Plant-N-Go planter with UV light engaged in the dark
